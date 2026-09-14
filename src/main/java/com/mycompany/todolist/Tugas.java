@@ -22,7 +22,12 @@ public class Tugas {
     }
     
     public void setPrioritas(String prioritas){
-        this.prioritas = prioritas;
+        if(prioritas == "Rendah" || prioritas == "Sedang" || prioritas == "Tinggi"){
+            this.prioritas = prioritas;
+        } else {
+            System.out.println("Status tidak valid, set ke Rendah");
+            this.prioritas = "Rendah";
+        }
     }
     
     public String getPrioritas(){

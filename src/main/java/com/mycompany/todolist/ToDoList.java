@@ -11,6 +11,7 @@ package com.mycompany.todolist;
 public class ToDoList {
     public static void main(String[] args) {
         System.out.println("=== APLIKASI TO-DO LIST ===");
+        System.out.println("Prioritas 'Rendah' 'Sedang' 'Tinggi'");
 
         Tugas tugas1 = new Tugas();
         Tugas tugas2 = new Tugas();
@@ -19,7 +20,7 @@ public class ToDoList {
         tugas1.setPrioritas("Tinggi");
         
         tugas2.setTugas("Belajar Web");
-        tugas2.setPrioritas("Sedang");
+        tugas2.setPrioritas("Normal");
         
         System.out.println("\n--- DAFTAR TUGAS AWAL ---");
         tugas1.tampilkanTugas();
