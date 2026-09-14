@@ -12,8 +12,14 @@ public class ToDoList {
     public static void main(String[] args) {
         System.out.println("=== APLIKASI TO-DO LIST ===");
 
-        Tugas tugas1 = new Tugas("Kerjakan Tugas OOP Pertemuan 3", "Tinggi");
-        Tugas tugas2 = new Tugas("Beli Bahan Makanan", "Rendah");
+        Tugas tugas1 = new Tugas();
+        Tugas tugas2 = new Tugas();
+        
+        tugas1.setTugas("Belajar OOP");
+        tugas1.setPrioritas("Tinggi");
+        
+        tugas2.setTugas("Belajar Web");
+        tugas2.setPrioritas("Sedang");
         
         System.out.println("\n--- DAFTAR TUGAS AWAL ---");
         tugas1.tampilkanTugas();

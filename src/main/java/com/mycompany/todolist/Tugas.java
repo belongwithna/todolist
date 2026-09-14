@@ -9,14 +9,24 @@ package com.mycompany.todolist;
  * @author hangineering
  */
 public class Tugas {
-    String namaTugas;
-    String prioritas;
-    boolean selesai;
-
-    public Tugas(String namaTugas, String prioritas) {
+    private String namaTugas;
+    private String prioritas;
+    private boolean selesai;
+    
+    public void setTugas(String namaTugas){
         this.namaTugas = namaTugas;
+    }
+    
+    public String getTugas(){
+        return namaTugas;
+    }
+    
+    public void setPrioritas(String prioritas){
         this.prioritas = prioritas;
-        this.selesai = false;
+    }
+    
+    public String getPrioritas(){
+        return prioritas;
     }
 
     public void tandaiSelesai() {
@@ -26,7 +36,7 @@ public class Tugas {
 
     public void tampilkanTugas() {
         String status = selesai ? "[Selesai]" : "[Belum Selesai]";
-        System.out.println(status + " " + namaTugas + " | Prioritas: " + prioritas);
+        System.out.println(status + " " + getTugas() + " | Prioritas: " + getPrioritas());
     }
     
 }
