@@ -9,9 +9,9 @@ package com.mycompany.todolist;
  * @author hangineering
  */
 public class Tugas {
-    private String namaTugas;
-    private String prioritas;
-    private boolean selesai;
+    protected String namaTugas;
+    protected String prioritas;
+    protected boolean selesai;
     
     public void setTugas(String namaTugas){
         this.namaTugas = namaTugas;
@@ -29,7 +29,7 @@ public class Tugas {
             this.prioritas = "Rendah";
         }
     }
-    
+        
     public String getPrioritas(){
         return prioritas;
     }

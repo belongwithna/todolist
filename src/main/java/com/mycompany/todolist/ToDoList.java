@@ -10,22 +10,24 @@ package com.mycompany.todolist;
  */
 public class ToDoList {
     public static void main(String[] args) {
-        System.out.println("=== APLIKASI TO-DO LIST ===");
-        System.out.println("Prioritas 'Rendah' 'Sedang' 'Tinggi'");
+       System.out.println("=== APLIKASI TO-DO LIST ===");
 
-        Tugas tugas1 = new Tugas();
-        Tugas tugas2 = new Tugas();
-        
-        tugas1.setTugas("Belajar OOP");
+        TugasKuliah tugas1 = new TugasKuliah();
+        tugas1.setTugas("Praktikum OOP Pertemuan 4");
         tugas1.setPrioritas("Tinggi");
-        
-        tugas2.setTugas("Belajar Web");
-        tugas2.setPrioritas("Normal");
-        
+        tugas1.setNamaMatkul("Pemrograman Berorientasi Objek");
+        tugas1.setDeadline("Bokong/Besok 23:59");
+
+        TugasProyek tugas2 = new TugasProyek();
+        tugas2.setTugas("Slicing UI Web E-Commerce");
+        tugas2.setPrioritas("Sedang");
+        tugas2.setNamaTim("Tim Frontend");
+        tugas2.setEstimasiJam(12);
+
         System.out.println("\n--- DAFTAR TUGAS AWAL ---");
         tugas1.tampilkanTugas();
         tugas2.tampilkanTugas();
-        
+
         System.out.println("\n--- UPDATE STATUS TUGAS ---");
         tugas1.tandaiSelesai();
 
