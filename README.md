@@ -1,19 +1,19 @@
-# 📝 Aplikasi To-Do List Sederhana (Tugas OOP)
+# 📝 Aplikasi To-Do List Sederhana (Tugas OOP - Inheritance)
 
-Aplikasi **To-Do List** berbasis Konsol/CLI yang dibuat menggunakan bahasa pemrograman **Java**. Aplikasi ini dirancang sebagai implementasi fondasi dasar dari pemikiran berorientasi objek (*Object-Oriented Programming*).
+Aplikasi **To-Do List** berbasis Konsol/CLI yang dibuat menggunakan bahasa pemrograman **Java**. Aplikasi ini dirancang sebagai implementasi fondasi dasar dari pemikiran berorientasi objek (*Object-Oriented Programming*), khususnya penerapan konsep **Inheritance (Pewarisan)**.
 
 ---
 
-## 🎯 Pembahasan Materi Pertemuan 4
+## 🎯 Pembahasan Materi Pertemuan 5
 
-Program ini menerapkan konsep-konsep dasar OOP yang telah dipelajari pada Pertemuan 4:
+Program ini menerapkan konsep-konsep OOP yang telah dipelajari, dengan fokus utama pada **Inheritance**:
 
-1. **Class**: `Tugas` bertindak sebagai blueprint/cetakan untuk setiap item tugas.
-2. **Field (Private)**: Variabel `namaTugas`, `prioritas`, dan `selesai` disembunyikan menggunakan akses `private` (menerapkan prinsip *Encapsulation*).
-3. **Getter & Setter**: Method untuk membaca (`getTugas`, `getPrioritas`) dan mengubah (`setTugas`, `setPrioritas`) nilai atribut secara aman.
-4. **Constructor**: Menggunakan *default constructor* bawaan Java saat instansiasi objek.
-5. **Method**: `tandaiSelesai()` dan `tampilkanTugas()` sebagai perilaku/aksi (*behavior*) objek.
-6. **Object Instantiation**: Menggunakan kata kunci `new` untuk mengalokasikan memori objek (`tugas1` dan `tugas2`).
+1. **Super Class (Parent Class)**: `Tugas` berfungsi sebagai kelas induk yang menyimpan atribut umum (`namaTugas`, `prioritas`, `selesai`) dan method bawaan (`tandaiSelesai`).
+2. **Sub Class (Child Class)**: `TugasKuliah` dan `TugasProyek` mewarisi properti dari `Tugas` menggunakan kata kunci `extends`, serta menambahkan atribut spesifik masing-masing.
+3. **Access Modifier (`protected`)**: Digunakan pada `Tugas.java` agar atribut dapat diakses secara langsung oleh kelas turunannya.
+4. **Method Overriding**: Method `tampilkanTugas()` di-override pada kelas turunan untuk menyesuaikan format tampilan sesuai jenis tugas.
+5. **Encapsulation & Getter/Setter**: Tetap diterapkan pada atribut tambahan di *child class* (`namaMatkul`, `deadline`, `namaTim`, `estimasiJam`).
+6. **Object Instantiation**: Membuat objek nyata dari kelas turunan (`TugasKuliah` dan `TugasProyek`) menggunakan kata kunci `new`.
 
 ---
 
@@ -21,19 +21,21 @@ Program ini menerapkan konsep-konsep dasar OOP yang telah dipelajari pada Pertem
 
 ```text
 ├── ToDoList.java       # Kelas utama yang mengeksekusi program (main method)
-└── Tugas.java          # Kelas model/blueprint untuk item tugas
+├── Tugas.java          # Super Class (Parent Class)
+├── TugasKuliah.java    # Sub Class 1 (Turunan dari Tugas)
+└── TugasProyek.java    # Sub Class 2 (Turunan dari Tugas)
 ```
 
 ---
 
 ## 💻 Kodingan Utama
 
-### `Tugas.java`
+### `Tugas.java` (Parent Class)
 ```java
 public class Tugas {
-    private String namaTugas;
-    private String prioritas;
-    private boolean selesai;
+    protected String namaTugas;
+    protected String prioritas;
+    protected boolean selesai;
     
     public void setTugas(String namaTugas){
         this.namaTugas = namaTugas;
@@ -63,25 +65,90 @@ public class Tugas {
 }
 ```
 
-### `ToDoList.java`
+### `TugasKuliah.java` (Child Class 1)
+```java
+public class TugasKuliah extends Tugas {
+    private String namaMatkul;
+    private String deadline;
+
+    public void setNamaMatkul(String namaMatkul) {
+        this.namaMatkul = namaMatkul;
+    }
+
+    public String getNamaMatkul() {
+        return namaMatkul;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    @Override
+    public void tampilkanTugas() {
+        String status = selesai ? "[Selesai]" : "[Belum Selesai]";
+        System.out.println(status + " [KULIAH] " + getTugas() + " | Matkul: " + namaMatkul + 
+                           " | Deadline: " + deadline + " | Prioritas: " + getPrioritas());
+    }
+}
+```
+
+### `TugasProyek.java` (Child Class 2)
+```java
+public class TugasProyek extends Tugas {
+    private String namaTim;
+    private int estimasiJam;
+
+    public void setNamaTim(String namaTim) {
+        this.namaTim = namaTim;
+    }
+
+    public String getNamaTim() {
+        return namaTim;
+    }
+
+    public void setEstimasiJam(int estimasiJam) {
+        this.estimasiJam = estimasiJam;
+    }
+
+    public int getEstimasiJam() {
+        return estimasiJam;
+    }
+
+    @Override
+    public void tampilkanTugas() {
+        String status = selesai ? "[Selesai]" : "[Belum Selesai]";
+        System.out.println(status + " [PROYEK] " + getTugas() + " | Tim: " + namaTim + 
+                           " | Est. Pengerjaan: " + estimasiJam + " Jam | Prioritas: " + getPrioritas());
+    }
+}
+```
+
+### `ToDoList.java` (Main Class)
 ```java
 public class ToDoList {
     public static void main(String[] args) {
-        System.out.println("=== APLIKASI TO-DO LIST ===");
+        System.out.println("=== APLIKASI TO-DO LIST (INHERITANCE) ===");
 
-        Tugas tugas1 = new Tugas();
-        Tugas tugas2 = new Tugas();
-        
-        tugas1.setTugas("Belajar OOP");
+        TugasKuliah tugas1 = new TugasKuliah();
+        tugas1.setTugas("Praktikum OOP Pertemuan 4");
         tugas1.setPrioritas("Tinggi");
-        
-        tugas2.setTugas("Belajar Web");
+        tugas1.setNamaMatkul("Pemrograman Berorientasi Objek");
+        tugas1.setDeadline("Besok 23:59");
+
+        TugasProyek tugas2 = new TugasProyek();
+        tugas2.setTugas("Slicing UI Web E-Commerce");
         tugas2.setPrioritas("Sedang");
-        
+        tugas2.setNamaTim("Tim Frontend");
+        tugas2.setEstimasiJam(12);
+
         System.out.println("\n--- DAFTAR TUGAS AWAL ---");
         tugas1.tampilkanTugas();
         tugas2.tampilkanTugas();
-        
+
         System.out.println("\n--- UPDATE STATUS TUGAS ---");
         tugas1.tandaiSelesai();
 
@@ -101,13 +168,13 @@ public class ToDoList {
 
 ### Langkah-Langkah
 
-1. **Clone / Download** repository ini atau simpan kedua file (`Tugas.java` dan `ToDoList.java`) dalam satu folder.
+1. **Clone / Download** repository ini atau simpan semua file (`Tugas.java`, `TugasKuliah.java`, `TugasProyek.java`, dan `ToDoList.java`) dalam satu folder.
 2. Buka terminal/command prompt, lalu masuk ke direktori tempat file disimpan.
-3. Kompilasi program:
+3. Kompilasi seluruh file program:
    ```bash
-   javac ToDoList.java Tugas.java
+   javac *.java
    ```
-4. Jalankan program:
+4. Jalankan program utama:
    ```bash
    java ToDoList
    ```
@@ -117,16 +184,16 @@ public class ToDoList {
 ## 🖥️ Contoh Output Program
 
 ```text
-=== APLIKASI TO-DO LIST ===
+=== APLIKASI TO-DO LIST (INHERITANCE) ===
 
 --- DAFTAR TUGAS AWAL ---
-[Belum Selesai] Belajar OOP | Prioritas: Tinggi
-[Belum Selesai] Belajar Web | Prioritas: Sedang
+[Belum Selesai] [KULIAH] Praktikum OOP Pertemuan 4 | Matkul: Pemrograman Berorientasi Objek | Deadline: Besok 23:59 | Prioritas: Tinggi
+[Belum Selesai] [PROYEK] Slicing UI Web E-Commerce | Tim: Tim Frontend | Est. Pengerjaan: 12 Jam | Prioritas: Sedang
 
 --- UPDATE STATUS TUGAS ---
- Status tugas "Belajar OOP" diperbarui menjadi SELESAI.
+ Status tugas "Praktikum OOP Pertemuan 4" diperbarui menjadi SELESAI.
 
 --- DAFTAR TUGAS TERBARU ---
-[Selesai] Belajar OOP | Prioritas: Tinggi
-[Belum Selesai] Belajar Web | Prioritas: Sedang
+[Selesai] [KULIAH] Praktikum OOP Pertemuan 4 | Matkul: Pemrograman Berorientasi Objek | Deadline: Besok 23:59 | Prioritas: Tinggi
+[Belum Selesai] [PROYEK] Slicing UI Web E-Commerce | Tim: Tim Frontend | Est. Pengerjaan: 12 Jam | Prioritas: Sedang
 ```
