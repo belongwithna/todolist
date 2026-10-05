@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.todolist;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,29 +11,35 @@ package com.mycompany.todolist;
  */
 public class ToDoList {
     public static void main(String[] args) {
-       System.out.println("=== APLIKASI TO-DO LIST ===");
-
+        System.out.println("=== APLIKASI TO-DO LIST (ABSTRACT, INTERFACE & POLYMORPHISM) ===");
+       
         TugasKuliah tugas1 = new TugasKuliah();
-        tugas1.setTugas("Praktikum OOP Pertemuan 4");
-        tugas1.setPrioritas("Tinggi");
+        tugas1.setTugas("Praktikum OOP Pertemuan 5");
+        tugas1.ubahPrioritas("Tinggi"); 
         tugas1.setNamaMatkul("Pemrograman Berorientasi Objek");
-        tugas1.setDeadline("Bokong/Besok 23:59");
+        tugas1.setDeadline("Besok 23:59");
 
         TugasProyek tugas2 = new TugasProyek();
         tugas2.setTugas("Slicing UI Web E-Commerce");
-        tugas2.setPrioritas("Sedang");
+        tugas2.ubahPrioritas("Sedang");
         tugas2.setNamaTim("Tim Frontend");
         tugas2.setEstimasiJam(12);
 
+        ArrayList<Tugas> daftarTugas = new ArrayList<>();
+        daftarTugas.add(tugas1);
+        daftarTugas.add(tugas2);
+
         System.out.println("\n--- DAFTAR TUGAS AWAL ---");
-        tugas1.tampilkanTugas();
-        tugas2.tampilkanTugas();
+        for (Tugas t : daftarTugas) {
+            t.tampilkanTugas();
+        }
 
         System.out.println("\n--- UPDATE STATUS TUGAS ---");
-        tugas1.tandaiSelesai();
+        daftarTugas.get(0).tandaiSelesai();
 
         System.out.println("\n--- DAFTAR TUGAS TERBARU ---");
-        tugas1.tampilkanTugas();
-        tugas2.tampilkanTugas();
+        for (Tugas t : daftarTugas) {
+            t.tampilkanTugas();
+        }
     }
 }

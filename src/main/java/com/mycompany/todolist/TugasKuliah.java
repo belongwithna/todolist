@@ -9,23 +9,15 @@ package com.mycompany.todolist;
  * @author hangineering
  */
 public class TugasKuliah extends Tugas {
-     private String namaMatkul;
+    private String namaMatkul;
     private String deadline;
 
     public void setNamaMatkul(String namaMatkul) {
         this.namaMatkul = namaMatkul;
     }
 
-    public String getNamaMatkul() {
-        return namaMatkul;
-    }
-
     public void setDeadline(String deadline) {
         this.deadline = deadline;
-    }
-
-    public String getDeadline() {
-        return deadline;
     }
 
     @Override

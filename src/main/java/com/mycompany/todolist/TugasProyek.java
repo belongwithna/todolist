@@ -16,19 +16,10 @@ public class TugasProyek extends Tugas {
         this.namaTim = namaTim;
     }
 
-    public String getNamaTim() {
-        return namaTim;
-    }
-
     public void setEstimasiJam(int estimasiJam) {
         this.estimasiJam = estimasiJam;
     }
 
-    public int getEstimasiJam() {
-        return estimasiJam;
-    }
-
-    // Overriding method tampilkanTugas untuk menambahkan info khusus TugasProyek
     @Override
     public void tampilkanTugas() {
         String status = selesai ? "[Selesai]" : "[Belum Selesai]";
