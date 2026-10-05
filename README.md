@@ -192,7 +192,7 @@ public class ToDoList {
 ## 🖥️ Contoh Output Program
 
 ```text
-=== APLIKASI TO-DO LIST (ABSTRACT, INTERFACE & POLYMORPHISM) ===
+=== APLIKASI TO-DO LIST ===
  Prioritas tugas "Praktikum OOP Pertemuan 5" diubah menjadi: Tinggi
  Prioritas tugas "Slicing UI Web E-Commerce" diubah menjadi: Sedang
 
