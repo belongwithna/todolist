@@ -9,7 +9,7 @@ package com.mycompany.todolist;
  * @author hangineering
  */
 public abstract class Tugas implements KelolaTugas {
-     protected String namaTugas;
+    protected String namaTugas;
     protected String prioritas;
     protected boolean selesai;
 
@@ -37,8 +37,17 @@ public abstract class Tugas implements KelolaTugas {
 
     @Override
     public void ubahPrioritas(String prioritasBaru) {
-        this.prioritas = prioritasBaru;
-        System.out.println(" Prioritas tugas \"" + namaTugas + "\" diubah menjadi: " + prioritasBaru);
+        try {
+            if (prioritasBaru == null || prioritasBaru.trim().isEmpty()) {
+                throw new IllegalArgumentException("Prioritas tidak boleh kosong!");
+            }
+            this.prioritas = prioritasBaru;
+            System.out.println(" Prioritas tugas \"" + namaTugas + "\" diubah menjadi: " + prioritasBaru);
+        } catch (IllegalArgumentException e) {
+            System.out.println(" [WARNING Error]: " + e.getMessage());
+        } finally {
+            System.out.println(" (Info: Blok try-catch ubahPrioritas selesai dieksekusi).");
+        }
     }
 
     public abstract void tampilkanTugas();
