@@ -14,14 +14,14 @@ public class ToDoList {
         System.out.println("=== APLIKASI TO-DO LIST ===");
        
         TugasKuliah tugas1 = new TugasKuliah();
-        tugas1.setTugas("Praktikum OOP Pertemuan 5");
-        tugas1.ubahPrioritas("Tinggi"); 
+        tugas1.setTugas("Praktikum OOP Pertemuan 6");
+        tugas1.ubahPrioritas("Tinggi"); // Normal
         tugas1.setNamaMatkul("Pemrograman Berorientasi Objek");
         tugas1.setDeadline("Besok 23:59");
 
         TugasProyek tugas2 = new TugasProyek();
         tugas2.setTugas("Slicing UI Web E-Commerce");
-        tugas2.ubahPrioritas("Sedang");
+        tugas2.ubahPrioritas(""); 
         tugas2.setNamaTim("Tim Frontend");
         tugas2.setEstimasiJam(12);
 
@@ -34,7 +34,16 @@ public class ToDoList {
             t.tampilkanTugas();
         }
 
-        System.out.println("\n--- UPDATE STATUS TUGAS ---");
+        System.out.println("\n--- UPDATE STATUS TUGAS & EXCEPTION TESTING ---");
+        
+        try {
+            daftarTugas.get(5).tandaiSelesai();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(" [ERROR Tertangkap]: Indeks tugas tidak ditemukan! (" + e.getMessage() + ")");
+        } finally {
+            System.out.println(" (Info: Proses pengecekan indeks list selesai dijalankan).");
+        }
+
         daftarTugas.get(0).tandaiSelesai();
 
         System.out.println("\n--- DAFTAR TUGAS TERBARU ---");
