@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class ToDoList {
     public static void main(String[] args) {
-        System.out.println("=== APLIKASI TO-DO LIST (ABSTRACT, INTERFACE & POLYMORPHISM) ===");
+        System.out.println("=== APLIKASI TO-DO LIST ===");
        
         TugasKuliah tugas1 = new TugasKuliah();
         tugas1.setTugas("Praktikum OOP Pertemuan 5");
